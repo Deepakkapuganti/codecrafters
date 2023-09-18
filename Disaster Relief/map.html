@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <title>My Google Map</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #map{
+                height:400px;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Map-Chat</h1>
+         <center><h2 id="text-center"> Enter Location: </h2></center>
+				            <form id="location-form">
+		                  <center><select>
+                    <option value="Srikakulam">Srikakulam</option>        
+		            <option value="Visakhapatnam">Visakhapatnam</option>
+                    <option value="Vizianagaram">Vizianagaram</option>
+		            <option value="Kakinada">kakinada</option>
+                    <option value="Eluru">Eluru</option>
+                    <option value="Vijayawada">Vijayawada</option>
+                    <option value="Guntur">Guntur</option>
+		            <option value="Ongole">Ongole</option>
+                    <option value="Nellore">Nellore</option>
+                    <option value="Tirupati">Tirupati</option>
+                    <option value="kadapa">kadapa</option>
+                    <option	value="Nandyala">Nandyala</option>
+                    <option value="Anantapur">Anantapur</option>
+                    <option value="Kurnool">Kurnool</option>            
+		            </select></center>
+		                  <br>
+		                <br>
+		                  <center><button type="submit">Submit</button></center>
+            </form>
+       <div id ="map"></div>
+        <script>
+          
+           var locationForm = document.getElementById('location-form');
+
+                    locationForm.addEventListener('submit',geocode);
+
+                    function geocode(e){
+                    e.preventDefault();
+                  var options = {
+                    zoom:10,
+                    center:{lat:16.5062,lng:80.6480}
+                };
+                
+                var map = new
+                google.maps.Map(document.getElementById('map'),options);
+         
+            
+            
+           var markers = [
+               {
+                   coords:{lat:16.5062,lng:80.6480},
+                  content: '<a href="Upload.html"> Upload Info & Chat </a>'
+                 
+               },
+               {
+                   coords:{lat:18.2949,lng:83.8938},
+                   content: '<a href=Upload.html"> Upload Info & Chat </a>'
+               },
+               {
+                coords:{lat:18.1067,lng:83.3956},
+                content: '<a href="Upload.html"> Upload Info & chat </a>'
+               },
+               {
+                   coords:{lat:17.6868,lng:83.2185},
+                  content: '<a href="Upload.html"> Upload Info & Chat </a>'  
+               },
+               {
+                   coords:{lat:16.9891,lng:82.2475},
+                   content: '<a href="Upload.html"> Upload Info & Chat</a>' 
+                 
+               },
+               {
+                  coords:{lat:16.7107,lng:81.0952},
+                  content: '<a href="Upload.html"> Upload Info & Chat</a>'
+               },
+               {
+                  coords:{lat:16.5062,lng:80.6480},
+                  content: '<a href="Upload.html">Upload Info & Chat</a>'
+
+               },
+               {
+                  coords:{lat:16.3067,lng:80.4365},
+                content: '<a href="Upload.html"> Upload Info & Chat</a>' 
+              
+               },
+               {
+                 coords:{lat:15.5057,lng:80.0499},
+                 content: '<a href="Upload.html"> Upload Info & Chat</a>' 
+              
+               },
+               {
+                   coords:{lat:14.4426,lng:79.9865},
+                   content: '<a href="Upload.html"> Upload Info & Chat</a>' 
+                 
+               },
+               {
+                  coords:{lang:13.6288,lng:79.4192},
+                  content: '<a href="Upload.html"> Upload Info & Chat</a>' 
+              
+               },
+               {
+                  coords:{lang:14.4673,lng:78.8242},
+                  content: '<a href="Upload.html"> Upload Info & Chat</a>' 
+              
+               },
+               {
+                  coords:{lang:15.4777,lng:78.4873},
+                  content: '<a href="Upload.html"> Upload Info & Chat</a>' 
+              
+               },
+               {
+                  coords:{lang:14.6819,lng:77.6006},
+                  content: '<a href="Upload.html"> Upload Info & Chat</a>' 
+              
+               },
+               {
+                coords:{lang:15.8281,lng:78.0373},
+                content: '<a href="Upload.html"> Upload Info & Chat</a>' 
+              
+               }
+               
+               
+              
+              
+               
+           ];
+        
+           for(var i = 0 ; i < markers.length ; i++){
+               addMarker(markers[i]);
+           };
+       
+      
+              function addMarker(props){
+                var marker = new google.maps.Marker({
+                   position: props.coords,
+                   map:map
+               });
+               if(props.content){
+                   var infoWindow = new google.maps.InfoWindow({
+                       content:props.content
+                   });
+                   marker.addListener('click',function(){
+                       infoWindow.open(map,marker);
+                   });
+               }
+               
+           }
+            google.maps.event.addListener(map , 'click' , function(event){
+                    addMarker({coords:event.latlng});
+                })
+           
+       }
+   
+        
+            
+        </script>
+         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoGXiMt0EjiPeCizghv5ai4kZ1GQHwH64&callback=initMap"
+                 async defer>
+                     </script>
+
+
+    </body>
+</html>
